@@ -55,6 +55,10 @@ const generateAccessToken = (req, res) => {
 
 app.get('/rtc/:channelName/:role/:tokentype/:uid', nocache, generateAccessToken);
 
-app.listen(PORT, () => {
-  console.log(`Agora Token Server listening at http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Agora Token Server listening at http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
